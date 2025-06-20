@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Respiración Visual</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      background-color: white;
+      transition: background-color 3s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+    }
+
+    #mensaje {
+      font-size: 10vw;
+      color: #444;
+      transition: color 1s ease;
+    }
+  </style>
+</head>
+<body>
+  <div id="mensaje">Inhala</div>
+
+  <script>
+    const pasos = [
+      { mensaje: "Inhala", color: "white", textoColor: "#333", duracion: 4000 },
+      { mensaje: "Exhala", color: "black", textoColor: "white", duracion: 6000 }
+    ];
+
+    let pasoActual = 0;
+    const mensaje = document.getElementById("mensaje");
+
+    function siguientePaso() {
+      const paso = pasos[pasoActual];
+      document.body.style.backgroundColor = paso.color;
+      mensaje.textContent = paso.mensaje;
+      mensaje.style.color = paso.textoColor;
+
+      pasoActual = (pasoActual + 1) % pasos.length;
+      setTimeout(siguientePaso, paso.duracion);
+    }
+
+    siguientePaso();
+  </script>
+</body>
+</html>
